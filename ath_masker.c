@@ -57,7 +57,7 @@ static int handler_pre(struct kprobe *p, struct pt_regs *regs)
 
 	printk("pre_handler: MAC address of device is %pM\n", common->macaddr);
 	printk("pre_handler: old BSSID mask is is %pM\n", common->bssidmask);
-	common->bssidmask[ETH_ALEN - 1] = 0x00;
+	memset(&common->bssidmask[ETH_ALEN - 3], 0x00, 3);
 	printk("pre_handler: new BSSID mask is is %pM\n", common->bssidmask);
 
 	/* A dump_stack() here will give a stack backtrace */
